@@ -42,7 +42,7 @@ class redisClient():
         proxylist = self.zrangebyscore()
         length = len(proxylist)
         if length > 0:
-            index = random.randint(0, len(proxylist))
-            return proxylist[index]
+            index = random.choice(proxylist)
+            return index
         else:
             return "error"
