@@ -9,7 +9,7 @@ class redisClient():
 
     def __init__(self):
         self.rdb = redis.Redis(host=R_HOST,port=R_PORT,decode_responses=True)
-        self.proxylist="proxylist9"
+        self.proxylist="proxylist10"
 
     '''
         存数据
