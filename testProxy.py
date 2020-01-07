@@ -22,16 +22,17 @@ class testProxy:
     async def detecting(self,url,item):
 
         proxies = "http://{}:{}".format(item['ip'], item['port'])
+        data = json.dumps({'ip': item['ip'], 'port': item['port']})
         #print('proxies',proxies)
         async with ClientSession() as session:
             try:
                 async with session.get(url,proxy=proxies,timeout=3) as response:
                     # response = await response.status
-                    print('可用代理-{}'.format(proxies))
-                    data = json.dumps({'ip':item['ip'],'port':item['port']})
+                    # print('可用代理-{}'.format(proxies))
                     self.rds.zadd(data,10)
 
             except Exception as e:
+                self.rds.zadd(data, 0)
                 pass
                 # print("{} connection is failsure".format(proxies))
 

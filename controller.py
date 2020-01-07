@@ -22,15 +22,12 @@ class Controller():
         while True:
             tp = testProxy.testProxy()
             tp.run()
-
-            time.sleep(20)
+            time.sleep(30)
 
     def random(self):
         rds = testRedis.redisClient()
-        lists = rds.zrangebyscore()
-        for item in lists:
-            print('random',item)
-        print("rangdom")
+        lists = rds.zrangebyscorerandom()
+        print("rangdom",lists)
 
 
     def run(self):
